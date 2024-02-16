@@ -1,0 +1,20 @@
+:host {
+  padding: 1rem;
+  width: 15rem;
+  border: 1px solid #ff4307;
+  border-radius: 1rem;
+  background-color: #ff4307;
+}
+
+.sidebar {
+  li {
+    display: flex;
+    align-items: center;
+    color: whitesmoke;
+    background-color: #ff4307;
+  }
+  .menuItemTitle {
+    margin-left: 8px;
+    font-size: 16px;
+  }
+}

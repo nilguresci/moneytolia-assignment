@@ -1,0 +1,27 @@
+.campaignCard {
+  .card-body {
+    .cardHeader {
+      display: flex;
+      justify-content: space-between;
+      color: #ff4307;
+      .card-link {
+        color: #ff4307;
+      }
+    }
+    .campaignPoint {
+      display: flex;
+      color: #ff4307;
+      gap: 10px;
+      .pointTexts {
+        display: flex;
+        .point {
+          padding-left: 5px;
+        }
+      }
+      .pointButtons {
+        display: flex;
+        gap: 5px;
+      }
+    }
+  }
+}
