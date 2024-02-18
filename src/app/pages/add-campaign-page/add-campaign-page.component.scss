@@ -1,0 +1,36 @@
+.addCampaign {
+  padding-left: 1.5rem;
+  .pageTitle {
+    color: #ff4307;
+  }
+  .card {
+    margin-top: 2vh;
+    .campaignTitle {
+      height: 7vh;
+    }
+    .pointSelect {
+      height: 7vh;
+      margin-top: 1vh;
+    }
+    .campaignDescription {
+      min-height: 15vh;
+    }
+    .warningText {
+      color: #ff4307;
+    }
+    .card-subtitle {
+      color: #ff8f6a;
+    }
+    .submitBtn {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 2vh;
+      button {
+        color: #ff4307;
+      }
+      :hover {
+        border: 1px solid #ffece6;
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+<div class="addCampaign">
+    <h5 class="pageTitle">Kampanya ekle</h5>
+    <div class="card">
+        <div class="card-body">
+            <h6 class="card-subtitle mb-2 ">{{currentDate}}</h6>
+            <form [formGroup]="checkoutForm" (ngSubmit)="addCampaign()" novalidate>
+                <div class="row">
+                    <div class="col">
+                        <input class="form-control campaignTitle " type="text" formControlName="title"
+                            placeholder="Kampanya başlığı" aria-label=".form-control-lg example" required
+                            style="height:7vh">
+                        <p class="warningText" *ngIf="isBtnClicked">Kampanya başlığının girilmesi zorunludur.</p>
+                        <select class="form-select pointSelect" formControlName="point"
+                            aria-label="Default select example" style="height:7vh">
+                            <option selected>Kampanya puanı</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <textarea class="form-control campaignDescription" formControlName="description"
+                            aria-label="With textarea" placeholder="Kampanya description" required></textarea>
+
+                        <p class="warningText" *ngIf="isBtnClicked">Kampanya açıklamasının girilmesi zorunludur.</p>
+                    </div>
+                </div>
+                <div class="submitBtn">
+                    <button type="submit" class="btn">Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
