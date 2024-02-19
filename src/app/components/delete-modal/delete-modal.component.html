@@ -1,17 +1,19 @@
-<div class="modal" id="deleteModal" tabindex="-1" role="dialog">
+<div class="modal deleteModal" id="deleteModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Kampanyayı Sil</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                    (click)="closePopup()"></button>
             </div>
             <div class="modal-body">
-                <p>{{campaignId}}</p>
-
+                <!-- <p>{{campaignId}}</p> -->
+                <p>{{campaignName}} kampanyasını silmek istediğinizden emin misiniz?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" (click)="closePopup()">
-                    Close
-                </button>
+                <button type="button" class="btn btn-secondary" (click)="closePopup()"
+                    data-bs-dismiss="modal">Hayır</button>
+                <button type="button" class="btn yesBtn" (click)="deleteCampaign()">Evet</button>
             </div>
         </div>
     </div>

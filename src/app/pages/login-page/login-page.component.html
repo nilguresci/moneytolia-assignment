@@ -1,1 +1,20 @@
-<p>login-page works!</p>
+<div class="loginPage">
+    <div class="d-flex flex-column">
+        <h3>Moneytolia Giriş</h3>
+        <form (ngSubmit)="login()">
+            <div class="mb-3">
+                <label for="exampleInputUsername" class="form-label">Kullanıcı adı</label>
+                <input type="text" class="form-control" id="exampleInputUsername" aria-describedby="usernameHelp"
+                    [(ngModel)]="loginInfo.username" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Şifre</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" [(ngModel)]="loginInfo.password"
+                    [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="loginBtn">
+                <button type="submit" class="btn ">Giriş yap</button>
+            </div>
+        </form>
+    </div>
+</div>

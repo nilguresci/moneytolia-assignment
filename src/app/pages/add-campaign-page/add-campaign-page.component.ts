@@ -4,7 +4,7 @@ import { CampaignService } from '../../services/campaign.service';
 import { Campaign } from '../../models/campaign';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { v4 as uuidv4 } from 'uuid';
-import { NgIf, NgStyle } from '@angular/common';
+import { CommonModule, NgIf, NgStyle } from '@angular/common';
 type formType = {
   title: string;
   description: string;
@@ -13,14 +13,15 @@ type formType = {
 @Component({
   selector: 'app-add-campaign-page',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, NgStyle, NgIf],
+  imports: [FormsModule, ReactiveFormsModule, NgStyle, NgIf, CommonModule],
   templateUrl: './add-campaign-page.component.html',
   styleUrl: './add-campaign-page.component.scss',
 })
 export class AddCampaignPageComponent {
   currentDate = moment().format('DD MM YYYY');
   campaigns: Campaign[] = [];
-
+  pointOptions: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  displayStyle = 'none';
   isBtnClicked: boolean = false;
   isWarningTexts: boolean = false;
   constructor(
@@ -33,16 +34,13 @@ export class AddCampaignPageComponent {
     description: '',
     point: 0,
   });
-  ngOnInit(): void {
-    console.log('campaigns', this.campaigns);
-  }
+  ngOnInit(): void {}
   isEmpty(value: any) {
     return (
       value == null || (typeof value === 'string' && value.trim().length === 0)
     );
   }
   addCampaign(): void {
-    console.log(this.checkoutForm.valid); // false
     if (
       this.checkoutForm.valid &&
       !this.isEmpty(this.checkoutForm.value.title) &&
@@ -53,16 +51,26 @@ export class AddCampaignPageComponent {
         title: this.checkoutForm.value.title!,
         description: this.checkoutForm.value.description!,
         date: moment().format(),
-        point: this.checkoutForm.value.point || 0,
+        point: Number(this.checkoutForm.value.point) || 0,
       };
       this.campaignService.addCampaign(campaign2);
-      console.warn('Your order has been submitted', this.checkoutForm.value);
       this.checkoutForm.reset();
       this.isBtnClicked = false;
+      this.openPopup();
+      setTimeout(() => {
+        this.closePopup();
+      }, 2000);
     } else {
-      console.log('else');
       this.isBtnClicked = true;
       this.isWarningTexts = true;
     }
+  }
+
+  openPopup() {
+    this.displayStyle = 'block';
+  }
+
+  closePopup() {
+    this.displayStyle = 'none';
   }
 }

@@ -12,17 +12,16 @@
                         <p class="warningText" *ngIf="isBtnClicked">Kampanya başlığının girilmesi zorunludur.</p>
                         <select class="form-select pointSelect" formControlName="point"
                             aria-label="Default select example" style="height:7vh">
-                            <option selected>Kampanya puanı</option>
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
+                            <option value="0" selected>Kampanya puanı </option>
+                            <option *ngFor="let p of pointOptions" [value]="p">
+                                {{p}}
+                            </option>
                         </select>
                     </div>
                     <div class="col">
                         <textarea class="form-control campaignDescription" formControlName="description"
-                            aria-label="With textarea" placeholder="Kampanya description" required></textarea>
-
+                            aria-label="With textarea" placeholder="Kampanya açıklaması" maxlength="250"
+                            required></textarea>
                         <p class="warningText" *ngIf="isBtnClicked">Kampanya açıklamasının girilmesi zorunludur.</p>
                     </div>
                 </div>
@@ -30,6 +29,16 @@
                     <button type="submit" class="btn">Kaydet</button>
                 </div>
             </form>
+        </div>
+    </div>
+    <div class="modal" [ngStyle]="{'display':displayStyle}" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>Kampanya başarılı bir şekilde oluşturuldu.</p>
+                </div>
+
+            </div>
         </div>
     </div>
 </div>

@@ -1,0 +1,17 @@
+.loginPage {
+  display: flex;
+
+  justify-content: center;
+  h3 {
+    color: #ff4307;
+  }
+  form {
+    width: 25vw;
+    .loginBtn {
+      button {
+        background-color: #ff4307;
+        color: whitesmoke;
+      }
+    }
+  }
+}

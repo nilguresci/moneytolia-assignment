@@ -5,6 +5,7 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
+import { CampaignService } from '../../services/campaign.service';
 
 @Component({
   selector: 'app-delete-modal',
@@ -17,22 +18,27 @@ export class DeleteModalComponent {
   @Input() campaignId = '';
   @Input() show: boolean = false;
   @Output() onCloseEvent = new EventEmitter();
-
+  campaignName: string = '';
+  constructor(private campaignService: CampaignService) {}
   ngOnChanges(changes: SimpleChanges) {
-    console.log('changes', changes);
     for (const propName in changes) {
-      console.log('propName', propName);
       if (propName === 'show') {
         (document.querySelector('#deleteModal') as HTMLElement).style.display =
           this.show ? 'block' : 'none';
       }
-      if (propName === 'campaignId') {
-        //sil
+      if (propName === 'campaignId' && this.campaignId) {
+        let data = this.campaignService.findCampaign(this.campaignId)[0];
+        this.campaignName = data.title;
       }
     }
   }
 
   closePopup() {
+    this.onCloseEvent.emit();
+  }
+
+  deleteCampaign() {
+    this.campaignService.deleteCampaign(this.campaignId);
     this.onCloseEvent.emit();
   }
 }

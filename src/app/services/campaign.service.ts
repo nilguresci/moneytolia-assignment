@@ -9,47 +9,55 @@ export class CampaignService {
   constructor() {}
 
   addCampaign(campaign: Campaign): Campaign {
-    console.log('storageHelpe', storageHelper.getValueWithKey('campaigns'));
     let campaigns = this.getCampaigns();
-    //  JSON.parse(storageHelper.getValueWithKey('campaigns')!)
-    //   ? JSON.parse(storageHelper.getValueWithKey('campaigns')!)
-    //   : [];
-    console.log('campaigns', campaigns);
     campaigns.push(campaign);
     storageHelper.setValueWithKey('campaigns', campaigns);
     return campaign;
   }
+
   getCampaigns(): Campaign[] {
-    let campaigns = JSON.parse(storageHelper.getValueWithKey('campaigns')!);
-    console.log('campaigns', campaigns);
+    let campaignsLSValue = storageHelper.getValueWithKey('campaigns');
+    let campaigns = campaignsLSValue ? JSON.parse(campaignsLSValue) : [];
     return campaigns;
   }
+
   findCampaign(id: string) {
     let campaigns = this.getCampaigns();
-    return campaigns.filter((c) => (c.id = id));
+    return campaigns.filter((c) => c.id === id);
   }
+
   updateCampaign(data: UpdateCampaign) {
     let campaigns = this.getCampaigns();
     let updatedCampaigns = campaigns.map((campaign) => {
       if (campaign.id === data.updateData.id) {
-        campaign = {
-          id: campaign.id,
-          date: campaign.date,
-          description: data.updateData.description,
-          point: campaign.point,
+        return {
+          ...campaign,
           title: data.updateData.title,
+          description: data.updateData.description,
         };
       }
+      return campaign;
     });
     storageHelper.setValueWithKey('campaigns', updatedCampaigns);
   }
+
   updatePoint(id: string, point: number) {
     let campaigns = this.getCampaigns();
     let updatedCampaigns = campaigns.map((campaign) => {
       if (campaign.id === id) {
-        campaign.point = point;
+        return {
+          ...campaign,
+          point: point,
+        };
       }
+      return campaign;
     });
+    storageHelper.setValueWithKey('campaigns', updatedCampaigns);
+  }
+
+  deleteCampaign(id: string) {
+    let campaigns = this.getCampaigns();
+    let updatedCampaigns = campaigns.filter((campaign) => campaign.id !== id);
     storageHelper.setValueWithKey('campaigns', updatedCampaigns);
   }
 }

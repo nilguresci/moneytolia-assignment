@@ -22,25 +22,36 @@ import { DeleteModalComponent } from '../../components/delete-modal/delete-modal
 export class HomePageComponent {
   campaigns: Campaign[] = [];
   modalShow = false;
+  deleteModalShow = false;
   modalId: string = '';
   constructor(private campaignService: CampaignService) {}
 
   ngOnInit(): void {
-    console.log('campaigns', this.campaigns);
     this.getCampaigns();
   }
 
   getCampaigns(): void {
     this.campaigns = this.campaignService.getCampaigns();
-    console.log('this.campaigns', this.campaigns);
   }
 
   openModal(id: string) {
-    console.log('id', id);
     this.modalShow = true;
     this.modalId = id;
   }
   closeModal() {
     this.modalShow = false;
+    setTimeout(() => {
+      this.getCampaigns();
+    }, 1000);
+  }
+  openDeleteModal(id: string) {
+    this.deleteModalShow = true;
+    this.modalId = id;
+  }
+  closeDeleteModal() {
+    this.deleteModalShow = false;
+    setTimeout(() => {
+      this.getCampaigns();
+    }, 1000);
   }
 }

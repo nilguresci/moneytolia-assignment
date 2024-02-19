@@ -3,36 +3,60 @@
 
   .card {
     min-height: 30vh;
-  }
-  .card-body {
-    .cardHeader {
-      display: flex;
-      justify-content: space-between;
-      color: #ff4307;
-      .card-link {
-        color: #ff4307;
-      }
-    }
-    .description {
-      min-height: 8vh;
-      display: flex;
-      align-items: center;
-    }
-    .campaignPoint {
-      display: flex;
-      color: #ff4307;
-      gap: 10px;
-      margin-top: 2vh;
-      .pointTexts {
+    .card-body {
+      .cardHeader {
         display: flex;
-        .point {
-          padding-left: 5px;
+        justify-content: space-between;
+        color: #ff4307;
+        .card-link {
+          color: #ff4307;
         }
       }
-      .pointButtons {
+      .description {
+        // overflow-y: scroll;
+        height: 16vh;
+      }
+      .campaignPoint {
         display: flex;
-        gap: 5px;
+        align-items: baseline;
+        color: #ff4307;
+        gap: 10px;
+        margin-top: 2vh;
+        .pointTexts {
+          display: flex;
+          .point {
+            padding-left: 5px;
+          }
+        }
+        .pointButtons {
+          display: flex;
+
+          a {
+            color: #ff4307;
+            cursor: pointer;
+          }
+        }
       }
     }
+  }
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: gray;
+    border-radius: 10px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #b30000;
   }
 }

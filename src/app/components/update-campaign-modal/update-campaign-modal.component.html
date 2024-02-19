@@ -1,17 +1,32 @@
-<div class="modal" id="updateModal" tabindex="-1" role="dialog">
+<div class="modal updateModal" id="updateModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Kampanyayı Güncelle</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                    (click)="closePopup()"></button>
             </div>
             <div class="modal-body">
-                <p>{{campaignId}}</p>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" (click)="closePopup()">
-                    Close
-                </button>
+                <p>{{campaign.date}}</p>
+                <form (ngSubmit)="updateCampaign()" novalidate>
+                    <div class="row campaignTitle">
+                        <div class="col">
+                            <input class="form-control" type="text" placeholder="Kampanya başlığı"
+                                aria-label=".form-control-lg example" required style="height:7vh"
+                                [(ngModel)]="campaign.title" [ngModelOptions]="{standalone: true}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <textarea class="form-control campaignDescription" aria-label="With textarea"
+                                maxlength="250" placeholder="Kampanya description" required
+                                [(ngModel)]="campaign.description" [ngModelOptions]="{standalone: true}"></textarea>
+                        </div>
+                    </div>
+                    <div class="submitBtn">
+                        <button type="submit" (click)="closePopup()" class="btn">Güncelle</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

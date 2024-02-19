@@ -1,11 +1,9 @@
 <main class="main">
-  <div class="header">
+  <div class="header" *ngIf="showHeadSidebar">
     <app-header></app-header>
-
   </div>
   <div class="content">
-
-    <app-sidebar></app-sidebar>
+    <app-sidebar *ngIf="showHeadSidebar"></app-sidebar>
     <div class="insideContent">
       <router-outlet />
     </div>
